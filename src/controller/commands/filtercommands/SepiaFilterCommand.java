@@ -5,16 +5,17 @@ import java.util.Scanner;
 
 import controller.commands.Command;
 import model.ImageModel;
-import model.transform.BlurFilter;
 import model.image.ImageState;
+import model.transform.SepiaFilter;
 import model.transform.Transformation;
 
-public class BlurFilterCommand implements Command {
+public class SepiaFilterCommand implements Command {
   private ImageModel model;
 
-  public BlurFilterCommand() {
+  public SepiaFilterCommand() {
     this.model = null;
   }
+
 
   @Override
   public void run(Scanner scanner, ImageModel model) {
@@ -35,9 +36,11 @@ public class BlurFilterCommand implements Command {
     if (sourceImage == null) {
       throw new IllegalArgumentException("Image with that ID not found!");
     }
-    // blur image & add to model
-    Transformation blurFilter = new BlurFilter();
-    ImageState blurredImage = blurFilter.apply(sourceImage);
-    model.addImage(destID, blurredImage);
+    // sepia image & add to model
+    Transformation sepiaFilter = new SepiaFilter();
+    ImageState sepiaImage = sepiaFilter.apply(sourceImage);
+    model.addImage(destID, sepiaImage);
+
+
   }
 }

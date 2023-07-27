@@ -1,11 +1,14 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.Reader;
 import java.io.StringReader;
 
 import controller.Controller;
 import controller.ControllerImpl;
+import controller.io.BufferedImageLoader;
 import controller.io.ImageLoader;
 import controller.io.PPMImageLoader;
 import controller.io.PPMImageSaver;
@@ -21,18 +24,20 @@ import static org.junit.Assert.assertThrows;
  */
 public class TestController {
   private ImageModel modelEmpty;
+  private ImageModel model;
+  private ImageModel model2;
 
   /**
    * This method sets up the test.
    */
   @Before
   public void setUp() {
-    ImageModel model = new ImageModelImpl();
+    model = new ImageModelImpl();
     ImageLoader pigeonImage = new PPMImageLoader("res/biggestpigeon.ppm");
     ImageState image = pigeonImage.run();
     model.addImage("pigeon", image);
 
-    ImageModel model2 = new ImageModelImpl();
+    model2 = new ImageModelImpl();
     ImageLoader anyaImage = new PPMImageLoader("res/anya.ppm");
     ImageState image2 = anyaImage.run();
     model2.addImage("anya", image2);
@@ -111,6 +116,48 @@ public class TestController {
       PPMImageSaver saver = new PPMImageSaver("res/doesnotexist.ppm", image, output);
       saver.run();
     });
+  }
+
+  // ---------- TEST FILE BUFFERED IMAGE FORMATS ----------
+
+  @Test
+  public void testLoadPNG() {
+    // ----- test loading PNG image -----
+    ImageLoader loader = new BufferedImageLoader("res/bee.png");
+    ImageState image = loader.run();
+    assertEquals(800, image.getWidth());
+    assertEquals(533, image.getHeight());
+  }
+
+  @Test
+  public void testLoadJPEG() {
+    // ----- test loading JPEG image -----
+    ImageLoader loader = new BufferedImageLoader("res/bee.jpg");
+    ImageState image = loader.run();
+    assertEquals(800, image.getWidth());
+    assertEquals(533, image.getHeight());
+  }
+
+  // ---------- TEST TEXT FILE INPUT ----------
+
+  @Test
+  public void testBrightenTextPPM() throws FileNotFoundException {
+    // ----- test script input file -----
+    Reader input = new FileReader("res/text/brightenPPM.txt");
+    Appendable output = new StringBuilder();
+    Controller controller = new ControllerImpl(input, model, output);
+    controller.runController();
+    assertEquals("", output.toString()); // no error messages
+  }
+
+  @Test
+  public void testBrightenTextJPEG() throws FileNotFoundException {
+    // ----- test script input file -----
+    Reader input = new FileReader("res/text/brightenJPEG.txt");
+    Appendable output = new StringBuilder();
+    Controller controller = new ControllerImpl(input, model, output);
+    controller.runController();
+    assertEquals("", output.toString()); // no error messages
   }
 
 

@@ -3,13 +3,13 @@ package model.filter;
 import model.ImageModel;
 import model.image.ImageImpl;
 import model.image.ImageState;
-import model.transform.Clamp;
+import model.transform.BaseTransformMethods;
 
 /**
  * This class represents a filter implementation that can be applied to an image. A filter is a
  * matrix that is applied to each pixel in an image to transform it.
  */
-public class FilteringImpl extends Clamp implements Filtering {
+public class FilteringImpl extends BaseTransformMethods implements Filtering {
   private ImageModel model;
 
   public FilteringImpl() {
@@ -20,13 +20,12 @@ public class FilteringImpl extends Clamp implements Filtering {
   public ImageState applyFilter(ImageState image, double[][] filter)
           throws IllegalArgumentException {
     // check if image/kernel null, kernel not square, or kernel not odd
-    if (image == null || filter == null || filter.length % 2 == 0
-            || filter.length != filter[0].length) {
-      throw new IllegalArgumentException("Image or kernel is null, or kernel is not square.");
-    }
+    checkFilter(image, filter);
+
     int width = image.getWidth();
     int height = image.getHeight();
 
+    // create new image to store filtered pixels
     ImageImpl newImage = new ImageImpl(width, height);
     int kernelSize = filter.length;
     int kernelCenter = kernelSize / 2;
@@ -38,13 +37,13 @@ public class FilteringImpl extends Clamp implements Filtering {
         int greenSum = 0;
         int blueSum = 0;
 
-        // apply filter to each color channel
+        // apply filter matrix to each pixel
         for (int i = 0; i < kernelSize; i++) {
           for (int j = 0; j < kernelSize; j++) {
             int x = col - kernelCenter + j;
             int y = row - kernelCenter + i;
 
-            // check if pixel is out of bounds
+            // pixel within bounds, apply filter to each pixel channel & add to sum
             if (x >= 0 && x < width && y >= 0 && y < height) {
               redSum += image.getRedChannel(x, y) * filter[i][j];
               greenSum += image.getGreenChannel(x, y) * filter[i][j];

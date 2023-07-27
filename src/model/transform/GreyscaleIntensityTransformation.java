@@ -9,20 +9,18 @@ import model.image.ImageState;
  * transformation sets each pixel's RGB channel values to the current pixel's average RGB channel
  * value.
  */
-public class GreyscaleIntensityTransformation extends Clamp implements Transformation {
+public class GreyscaleIntensityTransformation extends BaseTransformMethods implements Transformation {
 
   @Override
   public ImageState apply(ImageState sourceImage) throws IllegalArgumentException {
-    if (sourceImage == null) {
-      throw new IllegalArgumentException("Source image cannot be null.");
-    }
-    Image newImage = new ImageImpl(sourceImage.getHeight(), sourceImage.getWidth());
+    checkNull(sourceImage);
+    Image newImage = new ImageImpl(sourceImage.getWidth(), sourceImage.getHeight());
 
     for (int row = 0; row < sourceImage.getHeight(); row++) {
       for (int col = 0; col < sourceImage.getWidth(); col++) {
         // adjust each RGB channel for each pixel
-        int greyscaleValue = clamp(greyscaleAverage(sourceImage, row, col));
-        newImage.setPixel(row, col, greyscaleValue, greyscaleValue, greyscaleValue);
+        int greyscaleValue = clamp(greyscaleAverage(sourceImage, col, row));
+        newImage.setPixel(col, row, greyscaleValue, greyscaleValue, greyscaleValue);
       }
     }
     return newImage;

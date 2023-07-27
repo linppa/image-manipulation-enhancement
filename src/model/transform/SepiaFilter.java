@@ -1,0 +1,23 @@
+package model.transform;
+
+import model.filter.ColorFilteringImpl;
+import model.filter.Filtering;
+import model.filter.FilteringImpl;
+import model.image.Image;
+import model.image.ImageImpl;
+import model.image.ImageState;
+
+public class SepiaFilter extends BaseTransformMethods implements Transformation {
+
+  @Override
+  public ImageState apply(ImageState sourceImage) {
+    double[][] sepiaFilter = {
+            {0.393, 0.769, 0.189},
+            {0.349, 0.686, 0.168},
+            {0.272, 0.534, 0.131}
+    };
+    Filtering sepiaFiltering = new ColorFilteringImpl();
+    return sepiaFiltering.applyFilter(sourceImage, sepiaFilter);
+  }
+
+}

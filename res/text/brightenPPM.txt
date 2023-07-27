@@ -1,0 +1,3 @@
+load res/anya.ppm anya
+brighten 80 anya anya-brightened
+save res/anya-brightened-script.ppm anya-brightened

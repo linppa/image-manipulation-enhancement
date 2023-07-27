@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 import controller.commands.Command;
 import model.ImageModel;
-import model.transform.BlurFilter;
 import model.image.ImageState;
+import model.transform.GreyscaleFilter;
 import model.transform.Transformation;
 
-public class BlurFilterCommand implements Command {
+public class GreyscaleFilterCommand implements Command {
   private ImageModel model;
 
-  public BlurFilterCommand() {
+  public GreyscaleFilterCommand() {
     this.model = null;
   }
 
@@ -35,9 +35,9 @@ public class BlurFilterCommand implements Command {
     if (sourceImage == null) {
       throw new IllegalArgumentException("Image with that ID not found!");
     }
-    // blur image & add to model
-    Transformation blurFilter = new BlurFilter();
-    ImageState blurredImage = blurFilter.apply(sourceImage);
-    model.addImage(destID, blurredImage);
+    // grey image & add to model
+    Transformation greyFilter = new GreyscaleFilter();
+    ImageState greyImage = greyFilter.apply(sourceImage);
+    model.addImage(destID, greyImage);
   }
 }

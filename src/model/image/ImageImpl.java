@@ -44,7 +44,7 @@ public class ImageImpl implements Image {
   @Override
   public int getRedChannel(int x, int y) throws IllegalArgumentException {
     if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
-      throw new IllegalArgumentException("Invalid pixel");
+      throw new IllegalArgumentException("Invalid red pixel channel.");
     }
     return this.data[y][x].getR();
   }
@@ -52,7 +52,7 @@ public class ImageImpl implements Image {
   @Override
   public int getGreenChannel(int x, int y) throws IllegalArgumentException {
     if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
-      throw new IllegalArgumentException("Invalid pixel");
+      throw new IllegalArgumentException("Invalid green pixel channel.");
     }
     return this.data[y][x].getG();
   }
@@ -60,7 +60,7 @@ public class ImageImpl implements Image {
   @Override
   public int getBlueChannel(int x, int y) throws IllegalArgumentException {
     if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
-      throw new IllegalArgumentException("Invalid pixel");
+      throw new IllegalArgumentException("Invalid blue pixel channel.");
     }
     return this.data[y][x].getB();
   }
@@ -70,7 +70,7 @@ public class ImageImpl implements Image {
   @Override
   public void setPixel(int x, int y, int r, int g, int b) throws IllegalArgumentException {
     if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
-      throw new IllegalArgumentException("Invalid pixel");
+      throw new IllegalArgumentException("Unable to set pixel.");
     }
     this.data[y][x] = new PixelImpl(r, g, b);
 

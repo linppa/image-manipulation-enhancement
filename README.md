@@ -1,14 +1,27 @@
 # CS5004; Image Manipulation & Enhancement
 * Linda Quach | quach.l@northeastern.edu
 ___
-# HW 8;
-## The requirements for HW08 include;
+# Change log;
+## HW08;
 * Load/save an image from an ASCII PPM file.
   * The PPM format is a simple, text-based file format to store images. Basically contains a dump of the red, green, and blue values of each pixel, row-wise. Starter code was provided to read a PPM file, which we are allowed to use and manipulate.
 * Create images that visualize the value, intensity, or luma of an image as defined in the assignment.
 * Brighten or darken an image.
 * Allow a user to interact with the program to use these operations, using simple text-based scripting.
 * The program will handle text command input errors suitably.
+
+## HW09;
+* Model;
+    * added new filter package for applying filters
+    * Filtering (interface), FilteringImpl (class), BlurFilter (class)
+    * abstract class - added checkImage() method for checking null, duplicate code reduced
+    
+* Controller;
+    * added blur/sharpen command
+    * added LoadBufferedImageCommand
+    * ControllerImpl - added blur/sharpen command to hashmap of commands/script, added Load
+    * IO - added BufferedImageLoader
+
 
 
 ### Program Script Commands;
@@ -48,7 +61,7 @@ Within the model component, there are 3 packages: pixel, image, & transform. The
   * ImageImpl (class): This class implements the Image interface. It represents an image.
 * **TRANSFORM PACKAGE**
   * This package includes all the transformation classes, such as `BrightenTransformation`, `GreyscaleRedTransformation`, `GreyscaleGreenTransformation`, `GreyscaleBlueTransformation`, `GreyscaleIntensityTransformation`, `GreyscaleLumaTransformation`, and `GreyscaleValueTransformation`.
-  * It also includes the abstract class `Clamp` that contains the clamp method, which is used by all the transformation classes to clamp the RGB values of the pixels.
+  * It also includes the abstract class `BaseMethods` that contains the `clamp(int value)` method, which is used by all the transformation/filter classes to clamp the RGB values of the pixels. checkImage(
 
 ### Controller;
 Withing the controller component, there are 4 packages: controller, io, & commands. These packages and their respective classes work with the ImageModel class to manipulate the image as the user commands.

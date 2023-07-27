@@ -7,15 +7,20 @@ import controller.io.PPMImageLoader;
 import controller.io.PPMImageSaver;
 import model.ImageModel;
 import model.ImageModelImpl;
+import model.filter.Filtering;
 import model.image.ImageImpl;
 import model.image.ImageState;
+import model.transform.BlurFilter;
 import model.transform.BrightenTransformation;
 import model.transform.GreyscaleBlueTransformation;
+import model.transform.GreyscaleFilter;
 import model.transform.GreyscaleGreenTransformation;
 import model.transform.GreyscaleIntensityTransformation;
 import model.transform.GreyscaleLumaTransformation;
 import model.transform.GreyscaleRedTransformation;
 import model.transform.GreyscaleValueTransformation;
+import model.transform.SepiaFilter;
+import model.transform.SharpenFilter;
 import model.transform.Transformation;
 
 import static junit.framework.TestCase.assertEquals;
@@ -56,7 +61,7 @@ public class TestModel {
     modelTest.getImage("notAnImage");
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testInvalidAddImageToModel() {
     ImageState image = new ImageImpl(0, 0);
     modelTest.addImage("invalid", image);
@@ -325,6 +330,8 @@ public class TestModel {
     assertEquals(expectedOutput3, output3.toString());
   }
 
+  // ---------- TEST FILTERS ----------
+
   @Test
   public void testBlurFilter() {
     // ----- test original save -----
@@ -339,12 +346,120 @@ public class TestModel {
                     + "147 100 111 220 197 204 146 101 113 \n"
                     + "194 152 165 135 117 126 204 164 177 \n";
     assertEquals(expectedOutputOriginal, outputOriginal.toString());
+
+    // ----- test save after blur filter -----
+    Transformation blur = new BlurFilter();
+    ImageState blurImage = blur.apply(imageTest);
+    Appendable output = new StringBuilder();
+    ImageSaver saveImage = new PPMImageSaver("res/anyaBlur.ppm", blurImage, output);
+    saveImage.run();
+    String expectedOutput =
+            "P3\n"
+                    + "3 3\n"
+                    + "255\n"
+                    + "78 58 62 115 86 93 75 55 61 \n"
+                    + "118 91 97 165 130 141 118 91 99 \n"
+                    + "95 76 81 127 104 111 98 79 85 \n";
+    assertEquals(expectedOutput, output.toString());
+  }
+
+  @Test
+  public void testSharpenFilter() {
+    // ----- test original save -----
+    Appendable outputOriginal = new StringBuilder();
+    ImageSaver saveOriginalImage = new PPMImageSaver("res/anya.ppm", imageTest, outputOriginal);
+    saveOriginalImage.run();
+    String expectedOutputOriginal =
+            "P3\n"
+                    + "3 3\n"
+                    + "255\n"
+                    + "95 68 74 198 142 154 82 57 67 \n"
+                    + "147 100 111 220 197 204 146 101 113 \n"
+                    + "194 152 165 135 117 126 204 164 177 \n";
+    assertEquals(expectedOutputOriginal, outputOriginal.toString());
+
+    // ----- test save after sharpen filter -----
+    Transformation sharpen = new SharpenFilter();
+    ImageState sharpenImage = sharpen.apply(imageTest);
+    Appendable output = new StringBuilder();
+    ImageSaver saveImage = new PPMImageSaver("res/anyaSharpen.ppm", sharpenImage, output);
+    saveImage.run();
+    String expectedOutput =
+            "P3\n"
+                    + "3 3\n"
+                    + "255\n"
+                    + "137 101 106 255 217 234 124 90 101 \n"
+                    + "255 226 243 255 255 255 255 229 249 \n"
+                    + "229 189 201 255 255 255 240 204 217 \n";
+    assertEquals(expectedOutput, output.toString());
+  }
+
+  @Test
+  public void testSepiaFilter() {
+    // ----- test original save -----
+    Appendable outputOriginal = new StringBuilder();
+    ImageSaver saveOriginalImage = new PPMImageSaver("res/anya.ppm", imageTest, outputOriginal);
+    saveOriginalImage.run();
+    String expectedOutputOriginal =
+            "P3\n"
+                    + "3 3\n"
+                    + "255\n"
+                    + "95 68 74 198 142 154 82 57 67 \n"
+                    + "147 100 111 220 197 204 146 101 113 \n"
+                    + "194 152 165 135 117 126 204 164 177 \n";
+    assertEquals(expectedOutputOriginal, outputOriginal.toString());
+
+    // ----- test save after sepia filter -----
+    Transformation sepia = new SepiaFilter();
+    ImageState sepiaImage = sepia.apply(imageTest);
+    Appendable output = new StringBuilder();
+    ImageSaver saveImage = new PPMImageSaver("res/anyaSepiaFilter.ppm", sepiaImage, output);
+    saveImage.run();
+    String expectedOutput =
+            "P3\n"
+                    + "3 3\n"
+                    + "255\n"
+                    + "104 92 72 216 192 150 89 79 62 \n"
+                    + "156 139 108 255 246 192 156 139 108 \n"
+                    + "224 200 156 167 149 116 240 213 166 \n";
+    assertEquals(expectedOutput, output.toString());
+  }
+
+  @Test
+  public void testGreyFilter() {
+    // ----- test original save -----
+    Appendable outputOriginal = new StringBuilder();
+    ImageSaver saveOriginalImage = new PPMImageSaver("res/anya.ppm", imageTest, outputOriginal);
+    saveOriginalImage.run();
+    String expectedOutputOriginal =
+            "P3\n"
+                    + "3 3\n"
+                    + "255\n"
+                    + "95 68 74 198 142 154 82 57 67 \n"
+                    + "147 100 111 220 197 204 146 101 113 \n"
+                    + "194 152 165 135 117 126 204 164 177 \n";
+    assertEquals(expectedOutputOriginal, outputOriginal.toString());
+
+    // ----- test save after grey filter -----
+    Transformation grey = new GreyscaleFilter();
+    ImageState greyImage = grey.apply(imageTest);
+    Appendable output = new StringBuilder();
+    ImageSaver saveImage = new PPMImageSaver("res/anyaGreyFilter.ppm", greyImage, output);
+    saveImage.run();
+    String expectedOutput =
+            "P3\n"
+                    + "3 3\n"
+                    + "255\n"
+                    + "74 74 74 155 155 155 63 63 63 \n"
+                    + "111 111 111 202 202 202 111 111 111 \n"
+                    + "162 162 162 121 121 121 173 173 173 \n";
+    assertEquals(expectedOutput, output.toString());
   }
 
 
   // ---------- TEST INVALID TRANSFORMATIONS ----------
 
-  @Test (expected = NullPointerException.class)
+  @Test(expected = NullPointerException.class)
   public void testNullImageTransform() {
     ImageModel model1 = new ImageModelImpl();
     ImageLoader loader = new PPMImageLoader("imagebackup/biggestpigeon.ppm");
@@ -356,7 +471,7 @@ public class TestModel {
     saveOriginalImage.run();
   }
 
-  @Test (expected = IllegalStateException.class)
+  @Test(expected = IllegalStateException.class)
   public void testNullAppendableTransform() {
     ImageModel model1 = new ImageModelImpl();
     ImageLoader loader = new PPMImageLoader("imagebackup/biggestpigeon.ppm");
@@ -368,7 +483,7 @@ public class TestModel {
     saveOriginalImage.run();
   }
 
-  @Test (expected = NullPointerException.class)
+  @Test(expected = NullPointerException.class)
   public void testNullPixelTransformation() {
     ImageModel model1 = new ImageModelImpl();
     ImageState image = new ImageImpl(1, 1);
@@ -377,7 +492,7 @@ public class TestModel {
     ImageState greyRedImage = redGrey.apply(image);
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testNullImageTransformation() {
     ImageModel model1 = new ImageModelImpl();
     ImageState image = new ImageImpl(1, 1);

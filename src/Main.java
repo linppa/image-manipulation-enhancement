@@ -18,6 +18,14 @@ public class Main {
    * @throws IllegalArgumentException if the arguments are invalid
    */
   public static void main(String[] args) throws IllegalArgumentException {
+//    if (args.length > 0 && args[0].equals("-file")) {
+//      if (args.length < 2) {
+//        throw new IllegalArgumentException("No file name given.");
+//      }
+//      String fileName = args[1];
+//      // ...
+//    }
+
     try {
       Reader input = new InputStreamReader(System.in);
       ImageModel model = new ImageModelImpl();

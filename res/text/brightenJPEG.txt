@@ -1,0 +1,3 @@
+load res/cover.jpeg cover
+brighten 80 cover cover-brightened
+save res/cover-brightened.jpeg cover-brightened

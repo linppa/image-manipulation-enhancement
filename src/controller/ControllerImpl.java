@@ -11,6 +11,8 @@ import controller.commands.Command;
 import controller.commands.LoadPPMCommand;
 import controller.commands.SavePPMCommand;
 import controller.commands.ValueComponentCommand;
+import controller.commands.filtercommands.GreyscaleFilterCommand;
+import controller.commands.filtercommands.SepiaFilterCommand;
 import controller.commands.filtercommands.SharpenFilterCommand;
 import model.ImageModel;
 
@@ -26,8 +28,9 @@ public class ControllerImpl implements Controller {
   /**
    * Constructs a ControllerImpl object with the given input, model, and appendable. Initializes
    * the map of commands to run.
-   * @param input the input
-   * @param model the model
+   *
+   * @param input      the input
+   * @param model      the model
    * @param appendable the appendable
    */
   public ControllerImpl(Readable input, ImageModel model, Appendable appendable) {
@@ -47,10 +50,13 @@ public class ControllerImpl implements Controller {
     this.commandMap.put("save", new SavePPMCommand());
     this.commandMap.put("blur", new BlurFilterCommand()); // hw 9 added new command
     this.commandMap.put("sharpen", new SharpenFilterCommand());
+    this.commandMap.put("greyscale", new GreyscaleFilterCommand());
+    this.commandMap.put("sepia", new SepiaFilterCommand());
   }
 
   /**
    * Writes the given string to the appendable.
+   *
    * @param string the string to write
    * @throws IllegalStateException if the appendable cannot be written to
    */

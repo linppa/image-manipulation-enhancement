@@ -7,7 +7,7 @@ import model.image.ImageState;
 /**
  * This class represents a transformation that brightens an image.
  */
-public class BrightenTransformation extends Clamp implements Transformation {
+public class BrightenTransformation extends BaseTransformMethods implements Transformation {
   final private int brightenValue;
 
   /**
@@ -21,18 +21,26 @@ public class BrightenTransformation extends Clamp implements Transformation {
 
   @Override
   public ImageState apply(ImageState sourceImage) throws IllegalArgumentException {
-    if (sourceImage == null) {
-      throw new IllegalArgumentException("Source image cannot be null.");
-    }
-    Image newImage = new ImageImpl(sourceImage.getHeight(), sourceImage.getWidth());
+    checkNull(sourceImage);
+
+    int height = sourceImage.getHeight();
+    int width = sourceImage.getWidth();
+
+    Image newImage = new ImageImpl(width, height);
 
     // adjust each RGB channel for each pixel
-    for (int row = 0; row < sourceImage.getHeight(); row++) {
-      for (int col = 0; col < sourceImage.getWidth(); col++) {
-        int newR = clamp(sourceImage.getRedChannel(row, col) + this.brightenValue);
-        int newG = clamp(sourceImage.getGreenChannel(row, col) + this.brightenValue);
-        int newB = clamp(sourceImage.getBlueChannel(row, col) + this.brightenValue);
-        newImage.setPixel(row, col, newR, newG, newB);
+    for (int row = 0; row < height; row++) {
+      for (int col = 0; col < width; col++) {
+        int newR = (sourceImage.getRedChannel(col, row) + this.brightenValue);
+        int newG = (sourceImage.getGreenChannel(col, row) + this.brightenValue);
+        int newB = (sourceImage.getBlueChannel(col, row) + this.brightenValue);
+
+        // clamp the values
+        newR = clamp(newR);
+        newG = clamp(newG);
+        newB = clamp(newB);
+
+        newImage.setPixel(col, row, newR, newG, newB);
       }
     }
     return newImage;

@@ -64,6 +64,7 @@ public class PPMImageSaver implements ImageSaver {
     File file = new File(this.pathToSave);
     try {
       java.io.FileWriter writer = new FileWriter(file);
+      System.out.println("Image ppm saved to file.");
       writer.write(this.appendable.toString());
       writer.close();
     } catch (Exception e) {

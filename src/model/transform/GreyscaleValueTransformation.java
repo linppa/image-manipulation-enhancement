@@ -8,20 +8,18 @@ import model.image.ImageState;
  * This class represents a greyscale transformation that sets each pixel's RGB channel values to
  * the current pixel's maximum channel value.
  */
-public class GreyscaleValueTransformation extends Clamp implements Transformation {
+public class GreyscaleValueTransformation extends BaseTransformMethods implements Transformation {
 
   @Override
   public ImageState apply(ImageState sourceImage) throws IllegalArgumentException {
-    if (sourceImage == null) {
-      throw new IllegalArgumentException("Source image cannot be null.");
-    }
-    Image newImage = new ImageImpl(sourceImage.getHeight(), sourceImage.getWidth());
+    checkNull(sourceImage);
+    Image newImage = new ImageImpl(sourceImage.getWidth(), sourceImage.getHeight());
 
     for (int row = 0; row < sourceImage.getHeight(); row++) {
       for (int col = 0; col < sourceImage.getWidth(); col++) {
         // adjust each RGB channel for each pixel
-        int maxChannelValue = clamp(maxChannelValue(sourceImage, row, col));
-        newImage.setPixel(row, col, maxChannelValue, maxChannelValue, maxChannelValue);
+        int maxChannelValue = clamp(maxChannelValue(sourceImage, col, row));
+        newImage.setPixel(col, row, maxChannelValue, maxChannelValue, maxChannelValue);
       }
     }
     return newImage;
