@@ -7,9 +7,10 @@ import model.image.ImageState;
 /**
  * This class represents a greyscale transformation that can be applied to an image. This
  * transformation sets each pixel's RGB channel values to the current pixel's average RGB channel
- * value.
+ * value. This transformation does not change the image's alpha channel.
  */
-public class GreyscaleIntensityTransformation extends BaseTransformMethods implements Transformation {
+public class GreyscaleIntensityTransformation extends BaseTransformMethods
+        implements Transformation {
 
   @Override
   public ImageState apply(ImageState sourceImage) throws IllegalArgumentException {

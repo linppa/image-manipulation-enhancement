@@ -10,11 +10,24 @@ import javax.imageio.ImageIO;
 
 import model.image.ImageState;
 
+/**
+ * This class represents a buffered image saver for an image processing program. It implements the
+ * ImageSaver interface and extends the BaseIOMethods abstract class. It has a run method that saves
+ * the image state to a file. Supported file extensions: png, jpeg, jpg.
+ */
 public class BufferedImageSaver extends BaseIOMethods implements ImageSaver {
   private final String pathToSave;
   private final ImageState image;
   private ByteArrayOutputStream output;
 
+  /**
+   * Constructs a BufferedImageSaver object.
+   *
+   * @param pathToSave the path to save the image to
+   * @param image      the image state
+   * @param output     the output stream
+   * @throws NullPointerException if the path to save or image state is null
+   */
   public BufferedImageSaver(String pathToSave, ImageState image, ByteArrayOutputStream output)
           throws NullPointerException {
     this.pathToSave = Objects.requireNonNull(pathToSave);
@@ -36,8 +49,8 @@ public class BufferedImageSaver extends BaseIOMethods implements ImageSaver {
         int green = this.image.getGreenChannel(col, row);
         int blue = this.image.getBlueChannel(col, row);
 
-        int RGB = (red << 16) | (green << 8) | blue;
-        bufferedImage.setRGB(col, row, RGB);
+        int rGB = (red << 16) | (green << 8) | blue;
+        bufferedImage.setRGB(col, row, rGB);
       }
     }
     // array to hold bytes

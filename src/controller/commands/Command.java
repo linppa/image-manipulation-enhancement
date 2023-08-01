@@ -5,7 +5,8 @@ import java.util.Scanner;
 import model.ImageModel;
 
 /**
- * Represents a command or transformation that can be run on an ImageModel.
+ * Represents a command or transformation that can be run on an ImageModel. It has a run method
+ * that takes a scanner to read input from and an ImageModel image to run the command on.
  */
 public interface Command {
 

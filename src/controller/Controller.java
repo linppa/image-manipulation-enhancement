@@ -1,7 +1,8 @@
 package controller;
 
 /**
- * This interface represents a controller for an image processing program.
+ * This interface represents a controller for an image processing program. The controller runs the
+ * program.
  */
 public interface Controller {
 

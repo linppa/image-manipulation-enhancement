@@ -2,11 +2,13 @@ package model.transform;
 
 import model.filter.ColorFilteringImpl;
 import model.filter.Filtering;
-import model.filter.FilteringImpl;
-import model.image.Image;
-import model.image.ImageImpl;
 import model.image.ImageState;
 
+/**
+ * This class represents a Sepia Filter. A Sepia Filter
+ * is a matrix that is applied to each pixel in an image to transform it. It implements the
+ * Transformation interface and extends the BaseTransformMethods class.
+ */
 public class SepiaFilter extends BaseTransformMethods implements Transformation {
 
   @Override

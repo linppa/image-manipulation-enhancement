@@ -11,16 +11,17 @@ import model.ImageModel;
 import model.image.ImageState;
 
 /**
- * This class represents a command to save a PPM image.
+ * This class represents a command to save a PPM image. It implements the Command interface and
+ * extends the BaseIOMethods class. It has a run method that saves a PPM image.
  */
-public class SavePPMCommand extends BaseIOMethods implements Command {
+public class SaveCommand extends BaseIOMethods implements Command {
   private String filepath;
   private ImageModel model;
 
   /**
-   * Constructs a SavePPMCommand object.
+   * Constructs a SaveCommand object.
    */
-  public SavePPMCommand() {
+  public SaveCommand() {
     this.filepath = null;
     this.model = null;
   }

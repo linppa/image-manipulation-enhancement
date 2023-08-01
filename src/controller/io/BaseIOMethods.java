@@ -6,9 +6,19 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * This class contains methods that are used by multiple image loaders and savers.
+ */
 public abstract class BaseIOMethods {
 
-  protected String getFileExtension(String filepath) {
+  /**
+   * Returns the file extension of the given filepath.
+   *
+   * @param filepath the filepath
+   * @return the file extension
+   * @throws IllegalArgumentException if the filepath does not have an extension
+   */
+  protected String getFileExtension(String filepath) throws IllegalArgumentException {
     // find last period in filepath
     int periodIndex = filepath.lastIndexOf(".");
     // if no period, throw exception
@@ -20,6 +30,13 @@ public abstract class BaseIOMethods {
     }
   }
 
+  /**
+   * Checks if the given file extension is valid.
+   *
+   * @param filePath the filepath
+   * @return the file extension
+   * @throws IllegalArgumentException if the file extension is not valid
+   */
   protected BufferedImage readImageFile(String filePath) throws IllegalArgumentException {
     BufferedImage image;
     try {

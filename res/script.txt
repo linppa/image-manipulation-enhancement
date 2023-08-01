@@ -1,0 +1,36 @@
+load bee.jpg bee
+brighten 100 bee beebr
+save bee-brighten.jpg beebr
+
+brighten -100 bee beebd
+save bee-darken.jpg beebd
+
+value-component bee beev
+save bee-value-grey.jpg beev
+
+red-component bee beer
+save bee-red-grey.jpg beer
+
+green-component bee beeg
+save bee-green-grey.jpg beeg
+
+blue-component bee beeb
+save bee-blue-grey.jpg beeb
+
+luma-component bee beel
+save bee-luma-grey.jpg beel
+
+intensity-component bee beei
+save bee-intensity-grey.jpg beei
+
+blur bee beeblur
+save bee-blur.jpg beeblur
+
+sharpen bee beesh
+save bee-sharpen.jpg beesh
+
+greyscale bee beegf
+save bee-greyscale-filter.jpg beegf
+
+sepia bee beesep
+save bee-sepia-filter.jpg beesep

@@ -5,7 +5,9 @@ import model.image.ImageImpl;
 import model.image.ImageState;
 
 /**
- * This class represents a transformation that brightens an image.
+ * This class represents a transformation that brightens an image. The brighten value is added to
+ * each RGB channel for each pixel. If the given value is negative, the image will be darkened
+ * instead.
  */
 public class BrightenTransformation extends BaseTransformMethods implements Transformation {
   final private int brightenValue;

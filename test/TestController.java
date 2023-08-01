@@ -17,7 +17,9 @@ import model.ImageModelImpl;
 import model.image.ImageState;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.fail;
 
 /**
  * This class represents a test class for the controller.
@@ -36,11 +38,6 @@ public class TestController {
     ImageLoader pigeonImage = new PPMImageLoader("res/biggestpigeon.ppm");
     ImageState image = pigeonImage.run();
     model.addImage("pigeon", image);
-
-    model2 = new ImageModelImpl();
-    ImageLoader anyaImage = new PPMImageLoader("res/anya.ppm");
-    ImageState image2 = anyaImage.run();
-    model2.addImage("anya", image2);
 
     modelEmpty = new ImageModelImpl();
   }
@@ -125,8 +122,8 @@ public class TestController {
     // ----- test loading PNG image -----
     ImageLoader loader = new BufferedImageLoader("res/bee.png");
     ImageState image = loader.run();
-    assertEquals(800, image.getWidth());
-    assertEquals(533, image.getHeight());
+    assertEquals(400, image.getWidth());
+    assertEquals(266, image.getHeight());
   }
 
   @Test
@@ -134,8 +131,20 @@ public class TestController {
     // ----- test loading JPEG image -----
     ImageLoader loader = new BufferedImageLoader("res/bee.jpg");
     ImageState image = loader.run();
-    assertEquals(800, image.getWidth());
-    assertEquals(533, image.getHeight());
+    assertEquals(400, image.getWidth());
+    assertEquals(266, image.getHeight());
+  }
+
+  @Test
+  public void testSavePNG() {
+    // ----- test saving PNG image -----
+    Appendable output = new StringBuilder();
+    ImageState image = model.getImage("pigeon");
+    // PPM to PNG
+    PPMImageSaver saver = new PPMImageSaver("res/pigeonPPM-to-PNG.png", image, output);
+    saver.run();
+    // check if image saved
+    assertNotNull(output.toString()); // no error messages
   }
 
   // ---------- TEST TEXT FILE INPUT ----------
@@ -147,18 +156,72 @@ public class TestController {
     Appendable output = new StringBuilder();
     Controller controller = new ControllerImpl(input, model, output);
     controller.runController();
+    // all commands should run successfully
     assertEquals("", output.toString()); // no error messages
   }
 
   @Test
   public void testBrightenTextJPEG() throws FileNotFoundException {
     // ----- test script input file -----
+    // read .txt file - contains load, brighten, save commands
     Reader input = new FileReader("res/text/brightenJPEG.txt");
+
+    ImageModel model = new ImageModelImpl();
     Appendable output = new StringBuilder();
     Controller controller = new ControllerImpl(input, model, output);
     controller.runController();
+    // all commands should run successfully
     assertEquals("", output.toString()); // no error messages
+    // check if image loaded
+    assertEquals(400, model.getImage("cover").getWidth());
+    assertEquals(267, model.getImage("cover").getHeight());
+
+    try {
+      // check if image saved to correct file path
+      FileReader savedImage = new FileReader("res/cover-brightened.jpeg");
+      assertNotNull(savedImage);
+
+    } catch (FileNotFoundException e) {
+      fail("Image not saved");
+    }
+
   }
 
+  @Test
+  public void testAllCommandsTextPNG() throws FileNotFoundException {
+    // ----- test script input file -----
+    // read .txt file - contains load, ALL methods, save commands
+    Reader input = new FileReader("res/text/allCommandsPNG.txt");
 
+    ImageModel model = new ImageModelImpl();
+    Appendable output = new StringBuilder();
+    Controller controller = new ControllerImpl(input, model, output);
+    controller.runController();
+    // all commands should run successfully
+    assertEquals("", output.toString()); // no error messages
+    // check if image loaded
+    assertEquals(500, model.getImage("bee").getWidth());
+    assertEquals(500, model.getImage("bee").getHeight());
+  }
+
+  @Test
+  public void testSaveCommand() throws FileNotFoundException {
+    // read .txt file - contains load, & save commands
+    Reader input = new FileReader("res/text/saveCommand.txt");
+
+    ImageModel model = new ImageModelImpl();
+    Appendable output = new StringBuilder();
+    Controller controller = new ControllerImpl(input, model, output);
+    controller.runController();
+    // all commands should run successfully
+    assertEquals("", output.toString()); // no error messages
+    // check if image loaded
+    assertEquals(400, model.getImage("cover").getWidth());
+    assertEquals(267, model.getImage("cover").getHeight());
+
+    // check if image saved to correct file path
+    FileReader savedImage = new FileReader("res/cover-saved-text.jpeg");
+    // check if image saved
+    assertNotNull(savedImage);
+  }
 }

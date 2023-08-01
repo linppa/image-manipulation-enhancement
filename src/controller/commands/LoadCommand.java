@@ -10,16 +10,18 @@ import model.ImageModel;
 import model.image.ImageState;
 
 /**
- * This class represents a command to load a PPM image.
+ * This class represents a command to load a PPM image. It implements the Command interface and
+ * extends the BaseIOMethods class. It has a run method that loads a PPM image and adds it to the
+ * model.
  */
-public class LoadPPMCommand extends BaseIOMethods implements Command {
+public class LoadCommand extends BaseIOMethods implements Command {
   private String filepath;
   private ImageModel model;
 
   /**
-   * Constructs a LoadPPMCommand object.
+   * Constructs a LoadCommand object.
    */
-  public LoadPPMCommand() {
+  public LoadCommand() {
     this.filepath = null;
     this.model = null;
   }

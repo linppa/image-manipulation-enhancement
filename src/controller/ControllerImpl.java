@@ -5,11 +5,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
+import controller.commands.LoadCommand;
 import controller.commands.filtercommands.BlurFilterCommand;
 import controller.commands.BrightenCommand;
 import controller.commands.Command;
-import controller.commands.LoadPPMCommand;
-import controller.commands.SavePPMCommand;
+import controller.commands.SaveCommand;
 import controller.commands.ValueComponentCommand;
 import controller.commands.filtercommands.GreyscaleFilterCommand;
 import controller.commands.filtercommands.SepiaFilterCommand;
@@ -17,7 +17,8 @@ import controller.commands.filtercommands.SharpenFilterCommand;
 import model.ImageModel;
 
 /**
- * This class represents a controller for an image processing program.
+ * This class represents a controller for an image processing program. The controller runs the
+ * program.
  */
 public class ControllerImpl implements Controller {
   private final Readable input;
@@ -27,7 +28,9 @@ public class ControllerImpl implements Controller {
 
   /**
    * Constructs a ControllerImpl object with the given input, model, and appendable. Initializes
-   * the map of commands to run.
+   * the map of commands to run. The map is initialized with the following commands: "brighten",
+   * "value-component", "red-component", "green-component", "blue-component", "luma-component",
+   * "intensity-component", "load", "save", "blur", "sharpen", "greyscale", and "sepia" filters.
    *
    * @param input      the input
    * @param model      the model
@@ -46,9 +49,9 @@ public class ControllerImpl implements Controller {
     this.commandMap.put("blue-component", new ValueComponentCommand("blue"));
     this.commandMap.put("luma-component", new ValueComponentCommand("luma"));
     this.commandMap.put("intensity-component", new ValueComponentCommand("intensity"));
-    this.commandMap.put("load", new LoadPPMCommand());
-    this.commandMap.put("save", new SavePPMCommand());
-    this.commandMap.put("blur", new BlurFilterCommand()); // hw 9 added new command
+    this.commandMap.put("load", new LoadCommand());
+    this.commandMap.put("save", new SaveCommand());
+    this.commandMap.put("blur", new BlurFilterCommand()); // hw 9 added new command below
     this.commandMap.put("sharpen", new SharpenFilterCommand());
     this.commandMap.put("greyscale", new GreyscaleFilterCommand());
     this.commandMap.put("sepia", new SepiaFilterCommand());

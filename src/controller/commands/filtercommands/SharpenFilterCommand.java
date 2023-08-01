@@ -2,19 +2,23 @@ package controller.commands.filtercommands;
 
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.logging.Filter;
 
 import controller.commands.Command;
 import model.ImageModel;
-import model.filter.Filtering;
-import model.filter.FilteringImpl;
 import model.image.ImageState;
 import model.transform.SharpenFilter;
 import model.transform.Transformation;
 
+/**
+ * This class represents a command to sharpen an image. It implements the Command interface.
+ * It has a run method that sharpens an image and adds it to the model.
+ */
 public class SharpenFilterCommand implements Command {
   private ImageModel model;
 
+  /**
+   * This constructor creates a SharpenFilterCommand object.
+   */
   public SharpenFilterCommand() {
     this.model = null;
   }

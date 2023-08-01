@@ -1,20 +1,25 @@
 package controller.io;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Objects;
-
-import javax.imageio.ImageIO;
 
 import model.image.Image;
 import model.image.ImageImpl;
 import model.image.ImageState;
 
+/**
+ * This class represents a buffered image loader for an image processing program. It implements the
+ * ImageLoader interface and extends the BaseIOMethods abstract class. It has a run method that
+ * loads a buffered image and returns the image state. Supported file extensions: png, jpeg, jpg.
+ */
 public class BufferedImageLoader extends BaseIOMethods implements ImageLoader {
   private final String filePath;
 
+  /**
+   * Constructs a BufferedImageLoader object.
+   * @param filePath the file path
+   * @throws NullPointerException if the file path is null
+   */
   public BufferedImageLoader(String filePath) throws NullPointerException {
     this.filePath = Objects.requireNonNull(filePath);
   }
@@ -29,26 +34,15 @@ public class BufferedImageLoader extends BaseIOMethods implements ImageLoader {
 
     for (int row = 0; row < height; row++) {
       for (int col = 0; col < width; col++) {
-
-        int RGB = bufferedImage.getRGB(col, row);
-        int red = (RGB >> 16) & 0xff;
-        int green = (RGB >> 8) & 0xff;
-        int blue = RGB & 0xff;
+        // get RGB values from buffered image
+        int rGB = bufferedImage.getRGB(col, row);
+        int red = (rGB >> 16) & 0xff;
+        int green = (rGB >> 8) & 0xff;
+        int blue = rGB & 0xff;
 
         convertedImage.setPixel(col, row, red, green, blue);
       }
     }
     return convertedImage;
   }
-
-//  private BufferedImage readImageFile(String filePath) throws IllegalArgumentException {
-//    BufferedImage image;
-//    try {
-//      image = ImageIO.read(new FileInputStream(filePath));
-//    } catch (IOException e) {
-//      System.out.println("File error:" + this.filePath);
-//      throw new IllegalArgumentException("File not found or invalid!");
-//    }
-//    return image;
-//  }
 }

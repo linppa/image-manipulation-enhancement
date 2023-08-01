@@ -9,9 +9,16 @@ import model.image.ImageState;
 import model.transform.GreyscaleFilter;
 import model.transform.Transformation;
 
+/**
+ * This class represents a command to grey an image. It implements the Command interface.
+ * It has a run method that greys an image and adds it to the model.
+ */
 public class GreyscaleFilterCommand implements Command {
   private ImageModel model;
 
+  /**
+   * This constructor creates a GreyFilterCommand object.
+   */
   public GreyscaleFilterCommand() {
     this.model = null;
   }

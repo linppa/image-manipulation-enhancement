@@ -8,6 +8,7 @@ import model.image.ImageState;
  * This class represents a greyscale transformation that uses the luma or a weighted average
  * of the RGB channels. The weights are 0.2126 for red, 0.7152 for green, and 0.0722 for blue.
  * This transformation sets each pixel's RGB channel values to the current pixel's luma value.
+ * This transformation does not change the image's alpha channel.
  */
 public class GreyscaleLumaTransformation extends BaseTransformMethods implements Transformation {
 

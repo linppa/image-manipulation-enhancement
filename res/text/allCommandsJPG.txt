@@ -3,6 +3,10 @@ brighten 100 bee beebr
 save res/bee-brighten.jpg beebr
 
 load res/bee.jpg bee
+brighten -100 bee beebd
+save res/bee-darken.jpg beebd
+
+load res/bee.jpg bee
 value-component bee beev
 save res/bee-value-grey.jpg beev
 

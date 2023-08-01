@@ -9,7 +9,8 @@ import model.transform.BrightenTransformation;
 import model.transform.Transformation;
 
 /**
- * This class represents a command to brighten an image.
+ * This class represents a command to brighten an image. It implements the Command interface.
+ * It has a run method that brightens an image and adds it to the model.
  */
 public class BrightenCommand implements Command {
   private ImageModel model;

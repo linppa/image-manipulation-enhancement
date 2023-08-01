@@ -7,13 +7,16 @@ import model.transform.BaseTransformMethods;
 
 /**
  * This class represents a filter implementation that can be applied to an image. A filter is a
- * matrix that is applied to each pixel in an image to transform it.
+ * matrix that is applied to each pixel in an image to transform it. Kernel dimensions must be odd
+ * and greater than 0, and equal in both dimensions.
  */
 public class FilteringImpl extends BaseTransformMethods implements Filtering {
-  private ImageModel model;
 
+  /**
+   * This constructor creates a FilteringImpl object with the given model.
+   */
   public FilteringImpl() {
-    this.model = null;
+    ImageModel model = null;
   }
 
   @Override

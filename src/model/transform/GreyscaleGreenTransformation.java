@@ -6,7 +6,8 @@ import model.image.ImageState;
 
 /**
  * This class represents a greyscale transformation that sets each pixel's RGB channel values to
- *  * the current pixel's green channel value.
+ * the current pixel's green channel value. This transformation does not change the image's alpha
+ * channel.
  */
 public class GreyscaleGreenTransformation extends BaseTransformMethods implements Transformation {
 

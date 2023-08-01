@@ -10,7 +10,8 @@ import model.image.ImageImpl;
 import model.image.ImageState;
 
 /**
- * This class represents a PPM image loader for an image processing program.
+ * This class represents a PPM image loader for an image processing program. It implements the
+ * ImageLoader interface. It has a run method that loads a PPM image and returns the image state.
  */
 public class PPMImageLoader implements ImageLoader {
   private final String filePath;

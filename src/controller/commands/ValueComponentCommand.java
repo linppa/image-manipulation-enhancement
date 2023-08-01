@@ -14,7 +14,11 @@ import model.transform.GreyscaleValueTransformation;
 import model.transform.Transformation;
 
 /**
- * This class represents a command to transform an image to greyscale.
+ * This class represents a command to transform an image to greyscale. It implements the Command
+ * interface. It has a run method that transforms an image to greyscale and adds it to the model.
+ * The user can specify which component of the image to use to transform to greyscale. For example,
+ * the user can specify to use the red component of the image to transform to greyscale. Other
+ * components include green, blue, luma, intensity, and value.
  */
 public class ValueComponentCommand implements Command {
   private ImageModel model;
@@ -22,6 +26,7 @@ public class ValueComponentCommand implements Command {
 
   /**
    * Constructs a ValueComponentCommand object.
+   *
    * @param component the component to transform to greyscale
    */
   public ValueComponentCommand(String component) {

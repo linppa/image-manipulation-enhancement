@@ -7,7 +7,6 @@ import controller.io.PPMImageLoader;
 import controller.io.PPMImageSaver;
 import model.ImageModel;
 import model.ImageModelImpl;
-import model.filter.Filtering;
 import model.image.ImageImpl;
 import model.image.ImageState;
 import model.transform.BlurFilter;

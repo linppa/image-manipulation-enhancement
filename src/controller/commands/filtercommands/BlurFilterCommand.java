@@ -9,9 +9,16 @@ import model.transform.BlurFilter;
 import model.image.ImageState;
 import model.transform.Transformation;
 
+/**
+ * This class represents a command to blur an image. It implements the Command interface.
+ * It has a run method that blurs an image and adds it to the model.
+ */
 public class BlurFilterCommand implements Command {
   private ImageModel model;
 
+  /**
+   * This constructor creates a BlurFilterCommand object.
+   */
   public BlurFilterCommand() {
     this.model = null;
   }

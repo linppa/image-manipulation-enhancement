@@ -5,7 +5,7 @@ import model.image.ImageState;
 /**
  * This interface represents a model for an image processing program. The model stores images and
  * allows the user to apply transformations to them. The model can also retrieve images by their
- * ID/name within the model.
+ * ID/name within the model. The model is the only part of the program that can access the images.
  */
 public interface ImageModel {
   /**

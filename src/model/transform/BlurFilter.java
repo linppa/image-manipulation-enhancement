@@ -4,6 +4,10 @@ import model.filter.Filtering;
 import model.filter.FilteringImpl;
 import model.image.ImageState;
 
+/**
+ * This class represents a blur filter. It implements the Transformation interface.
+ * A blur filter is a matrix that is applied to each pixel in an image to transform it.
+ */
 public class BlurFilter extends BaseTransformMethods implements Transformation {
 
   @Override

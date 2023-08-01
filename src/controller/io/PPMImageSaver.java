@@ -7,7 +7,8 @@ import java.util.Objects;
 import model.image.ImageState;
 
 /**
- * This class represents a PPM image saver for an image processing program.
+ * This class represents a PPM image saver for an image processing program. It implements the
+ * ImageSaver interface. It saves the .ppm image to a file.
  */
 public class PPMImageSaver implements ImageSaver {
   private final String pathToSave;

@@ -100,5 +100,4 @@ public class TestIO {
     }
     assertEquals("res/anyaBrightened.ppm", fileOutput.getPath());
   }
-
 }

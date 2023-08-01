@@ -5,6 +5,10 @@ import model.filter.Filtering;
 
 import model.image.ImageState;
 
+/**
+ * This class represents a greyscale filter. It implements the Transformation interface.
+ * A greyscale filter is a matrix that is applied to each pixel in an image to transform it.
+ */
 public class GreyscaleFilter extends BaseTransformMethods implements Transformation {
 
   @Override
