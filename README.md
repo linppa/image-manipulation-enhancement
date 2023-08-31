@@ -11,7 +11,7 @@ filters to the image, as well as viewing a histogram of the image's RGB values.
 
 ## Table of Contents;
 
-* [How to run the program](#how-to-run-the-program)
+* [How to Run the Program](#how-to-run-the-program)
 * [Program Script Commands](#program-script-commands)
 * [Graphical User Interface (GUI) Instructions](#graphical-user-interface-gui-instructions)
 * [Change log](#change-log)
@@ -20,9 +20,11 @@ filters to the image, as well as viewing a histogram of the image's RGB values.
 
 ___
 
-## How to run the program;
+## How to Run the Program;
 
 There are three ways to run the program:
+
+![three ways](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/29003e6988b0c8c2c4989a0e86c81d4872f7792b/imagebackup/CLI.png)
 
 * Command-line arguments, Interactive text mode, and Graphical user interface
   (GUI) mode.
@@ -30,18 +32,21 @@ There are three ways to run the program:
     * Using the command-line arguments, this program accepts the following inputs:
         * `-file path-of-script-file`: The script file must be in the same directory
           as the program file and must be a `.txt` file. The script file must
-          contain commands that are supported by the program.
+          contain commands that are supported by the program. Here is an example of a script.txt file:
+          ![example script file](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/7e4e67f1ebb6b51f27d57c1e037dc1237339cbd7/imagebackup/example%20script.png)
+          
 
         * `-text`: when invoked in this manner the program should open in an
           interactive text mode, allowing the user to type the script and execute it
           one line at a time.
+          ![interactive text mode](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/29003e6988b0c8c2c4989a0e86c81d4872f7792b/imagebackup/running%20interactive%20text.png)
 
         * ` `: when invoked in this manner the program should open in an interactive
           GUI mode, allowing the user to load an image from a file and visually see
           the image. The GUI contains buttons to allow the user to manipulate the
           image, such as brightening, darkening, greyscaling, and applying filters
           to the image. The user may also view a histogram of the image's RGB
-          values.
+          values. (More information about the GUI can be found under the GUI Instructions section.)
 
 * Please refer to the program script commands below for more information on
   commands.
@@ -98,7 +103,7 @@ ___
 
 ## Graphical User Interface (GUI) Instructions;
 
-* ![GUI](./running%20GUI.png)
+* ![GUI](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/29003e6988b0c8c2c4989a0e86c81d4872f7792b/imagebackup/running%20GUI.png)
 
     * The GUI contains all the buttons to allow the user to manipulate the
       image, similarly to what can be achieved in the script file or interactive
@@ -109,11 +114,11 @@ ___
       the histogram of the image.
     * The bottom of the window will display messages to the user, such as
       whether the operation was successful or not.
-        * ![Messages](./messages.png)
+        * ![Messages](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/29003e6988b0c8c2c4989a0e86c81d4872f7792b/imagebackup/messages.png)
 
     * User must load an image before applying any other operations.
-        * ![Load](./load%20image.png)
-        * ![Loaded](./loaded%20image.png)
+        * ![Load](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/29003e6988b0c8c2c4989a0e86c81d4872f7792b/imagebackup/load%20image.png)
+        * ![Loaded](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/29003e6988b0c8c2c4989a0e86c81d4872f7792b/imagebackup/loaded%20image.png)
 
     * The right side contains the options to manipulate the image. User may
       adjust the brightness, greyscale based on a selected component, or apply a
@@ -122,21 +127,21 @@ ___
     * To adjust the brightness of an image, the user needs to select a value on
       the slider bar and click the "Brightness" button. Positive values will
       brighten the image, while negative values will darken the image.
-        * ![Brightness](./brightness%20slider.png)
+        * ![Brightness](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/29003e6988b0c8c2c4989a0e86c81d4872f7792b/imagebackup/brightness%20slider.png)
 
     * To greyscale based on a selected component, the user needs to select a
       component from the drop-down menu and click the "Greyscale" button.
-        * ![Greyscale](./component%20greyscales.png)
-        * ![Greyscaled](./grey%20selections.png)
+        * ![Greyscale](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/29003e6988b0c8c2c4989a0e86c81d4872f7792b/imagebackup/component%20greyscales.png)
+        * ![Greyscaled](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/29003e6988b0c8c2c4989a0e86c81d4872f7792b/imagebackup/grey%20selections.png)
 
     * For filters, the user simply just clicks the button of the filter they
       want to apply to the image while an image is loaded.
     * The histogram may also be viewed while an image is loaded.
-        * ![Histogram](./histogram.png)
+        * ![Histogram](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/29003e6988b0c8c2c4989a0e86c81d4872f7792b/imagebackup/histogram.png)
 
     * The user may save the image at any time by clicking the "Save" button. The
       supported file types are `.png, .jpg, .jpeg, and .ppm`.
-        * ![Save](./save.png)
+        * ![Save](https://github.com/linppa/HW9-ImageManipulationEnhancement/blob/29003e6988b0c8c2c4989a0e86c81d4872f7792b/imagebackup/save.png)
 
 ___
 
