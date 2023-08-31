@@ -21,5 +21,4 @@ public class SepiaFilter extends BaseTransformMethods implements Transformation 
     Filtering sepiaFiltering = new ColorFilteringImpl();
     return sepiaFiltering.applyFilter(sourceImage, sepiaFilter);
   }
-
 }

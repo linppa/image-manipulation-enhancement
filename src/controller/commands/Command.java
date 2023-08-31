@@ -12,8 +12,9 @@ public interface Command {
 
   /**
    * Runs the command or transformation on the given model.
+   *
    * @param scanner the scanner to read input from
-   * @param model the model to run the command on
+   * @param model   the model to run the command on
    */
   void run(Scanner scanner, ImageModel model);
 }

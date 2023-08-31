@@ -28,16 +28,17 @@ public class GreyscaleValueTransformation extends BaseTransformMethods implement
 
   /**
    * Returns the maximum of the RGB channels for the pixel at the given row and column.
+   *
    * @param sourceImage the image to get the pixel from
-   * @param row the row of the pixel
-   * @param col the column of the pixel
+   * @param row         the row of the pixel
+   * @param col         the column of the pixel
    * @return the maximum of the RGB channels for the pixel at the given row and column
    */
   private int maxChannelValue(ImageState sourceImage, int row, int col) {
     int r = clamp(sourceImage.getRedChannel(row, col));
     int g = clamp(sourceImage.getGreenChannel(row, col));
     int b = clamp(sourceImage.getBlueChannel(row, col));
-
+    // return maximum of RGB channels
     return Math.max(r, Math.max(g, b));
   }
 }

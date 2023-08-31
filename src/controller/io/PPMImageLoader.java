@@ -28,40 +28,38 @@ public class PPMImageLoader implements ImageLoader {
 
   @Override
   public ImageState run() throws IllegalArgumentException {
-    Scanner sc;
-
+    Scanner scanner;
     try {
-      sc = new Scanner(new FileInputStream(filePath));
+      scanner = new Scanner(new FileInputStream(filePath));
     } catch (FileNotFoundException e) {
       System.out.println("File " + filePath + " not found!");
       throw new IllegalArgumentException("File not found");
     }
     StringBuilder builder = new StringBuilder();
     //read the file line by line, and populate a string. This will throw away any comment lines
-    while (sc.hasNextLine()) {
-      String s = sc.nextLine();
+    while (scanner.hasNextLine()) {
+      String s = scanner.nextLine();
       if (s.charAt(0) != '#') {
         builder.append(s + System.lineSeparator());
       }
     }
-    sc = new Scanner(builder.toString());
-
+    scanner = new Scanner(builder.toString());
     String token;
-    token = sc.next();
+    token = scanner.next();
     if (!token.equals("P3")) {
       System.out.println("Invalid PPM file: plain RAW file should begin with P3");
     }
-    int width = sc.nextInt();
-    int height = sc.nextInt();
-    int maxValue = sc.nextInt();
+    int width = scanner.nextInt();
+    int height = scanner.nextInt();
+    int maxValue = scanner.nextInt();
     // store image data
     Image image = new ImageImpl(width, height);
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        int r = sc.nextInt();
-        int g = sc.nextInt();
-        int b = sc.nextInt();
+        int r = scanner.nextInt();
+        int g = scanner.nextInt();
+        int b = scanner.nextInt();
         // store rgb values
         image.setPixel(j, i, r, g, b);
       }

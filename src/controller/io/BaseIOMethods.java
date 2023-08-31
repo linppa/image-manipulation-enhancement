@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import model.image.ImageState;
+
 /**
  * This class contains methods that are used by multiple image loaders and savers.
  */
@@ -46,5 +48,26 @@ public abstract class BaseIOMethods {
       throw new IllegalArgumentException("File not found or invalid!");
     }
     return image;
+  }
+
+  protected BufferedImage convertImageStateToBuffered(ImageState image) {
+    int height = image.getHeight();
+    int width = image.getWidth();
+    // create buffered image object
+    BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+    for (int row = 0; row < height; row++) {
+      for (int col = 0; col < width; col++) {
+
+        int red = image.getRedChannel(col, row);
+        int green = image.getGreenChannel(col, row);
+        int blue = image.getBlueChannel(col, row);
+
+        int rGB = (red << 16) | (green << 8) | blue;
+
+        bufferedImage.setRGB(col, row, rGB);
+      }
+    }
+    return bufferedImage;
   }
 }

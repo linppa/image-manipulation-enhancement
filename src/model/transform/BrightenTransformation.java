@@ -15,6 +15,7 @@ public class BrightenTransformation extends BaseTransformMethods implements Tran
   /**
    * Constructs a BrightenTransformation object with the given brighten value. If the given value
    * is negative, the image will be darkened instead.
+   *
    * @param brightenValue the value to brighten/darken the image by
    */
   public BrightenTransformation(int brightenValue) {

@@ -10,6 +10,7 @@ import model.image.ImageState;
 public interface Transformation {
   /**
    * Applies the transformation to the given image.
+   *
    * @param sourceImage the image to apply the transformation to
    * @return the transformed image
    * @throws IllegalArgumentException if the given image is null

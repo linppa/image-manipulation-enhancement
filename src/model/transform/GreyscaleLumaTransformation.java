@@ -29,9 +29,10 @@ public class GreyscaleLumaTransformation extends BaseTransformMethods implements
 
   /**
    * Returns the luma of the RGB channels for the pixel at the given row and column.
+   *
    * @param sourceImage the image to get the pixel from
-   * @param row the row of the pixel
-   * @param col the column of the pixel
+   * @param row         the row of the pixel
+   * @param col         the column of the pixel
    * @return the luma of the RGB channels for the pixel at the given row and column
    */
   private int greyscaleLuma(ImageState sourceImage, int row, int col) {
@@ -41,5 +42,4 @@ public class GreyscaleLumaTransformation extends BaseTransformMethods implements
 
     return (int) Math.round((r * 0.2126) + (g * 0.7152) + (b * 0.0722));
   }
-
 }

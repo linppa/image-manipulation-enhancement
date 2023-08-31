@@ -17,6 +17,7 @@ public class BufferedImageLoader extends BaseIOMethods implements ImageLoader {
 
   /**
    * Constructs a BufferedImageLoader object.
+   *
    * @param filePath the file path
    * @throws NullPointerException if the file path is null
    */

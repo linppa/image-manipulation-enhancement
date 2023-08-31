@@ -10,7 +10,8 @@ import model.image.ImageState;
 public interface ImageModel {
   /**
    * Adds the given image to this model with the given ID/name.
-   * @param id the ID/name of the image
+   *
+   * @param id    the ID/name of the image
    * @param image the image to add
    * @throws IllegalArgumentException if the given ID/name or image is null
    */
@@ -18,6 +19,7 @@ public interface ImageModel {
 
   /**
    * Applies the given transformation to the image with the given ID/name.
+   *
    * @param id the ID/name of the image
    * @return the transformed image
    * @throws IllegalArgumentException if the given ID/name is null

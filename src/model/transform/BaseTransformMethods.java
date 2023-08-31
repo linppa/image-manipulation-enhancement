@@ -40,7 +40,7 @@ public abstract class BaseTransformMethods {
   /**
    * Checks if the given image is null.
    *
-   * @param image the image to check
+   * @param image  the image to check
    * @param filter the filter to check
    * @throws IllegalArgumentException if the image is null
    */

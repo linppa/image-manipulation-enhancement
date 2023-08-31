@@ -46,7 +46,5 @@ public class SepiaFilterCommand implements Command {
     Transformation sepiaFilter = new SepiaFilter();
     ImageState sepiaImage = sepiaFilter.apply(sourceImage);
     model.addImage(destID, sepiaImage);
-
-
   }
 }

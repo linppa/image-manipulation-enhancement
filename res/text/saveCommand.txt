@@ -1,2 +1,0 @@
-load res/cover.jpeg cover
-save res/cover-saved-text.jpeg cover

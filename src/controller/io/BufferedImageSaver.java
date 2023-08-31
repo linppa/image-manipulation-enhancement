@@ -16,7 +16,7 @@ import model.image.ImageState;
  * the image state to a file. Supported file extensions: png, jpeg, jpg.
  */
 public class BufferedImageSaver extends BaseIOMethods implements ImageSaver {
-  private final String pathToSave;
+  private String pathToSave;
   private final ImageState image;
   private ByteArrayOutputStream output;
 
@@ -30,7 +30,16 @@ public class BufferedImageSaver extends BaseIOMethods implements ImageSaver {
    */
   public BufferedImageSaver(String pathToSave, ImageState image, ByteArrayOutputStream output)
           throws NullPointerException {
+    // check if file extension is supported
     this.pathToSave = Objects.requireNonNull(pathToSave);
+    String extension = getFileExtension(pathToSave);
+    if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")
+            || extension.equals("ppm")) {
+      this.pathToSave = pathToSave;
+    } else {
+      throw new IllegalArgumentException("File extension not supported!");
+    }
+
     this.image = Objects.requireNonNull(image);
     this.output = output;
   }
@@ -55,10 +64,10 @@ public class BufferedImageSaver extends BaseIOMethods implements ImageSaver {
     }
     // array to hold bytes
     this.output = new ByteArrayOutputStream();
-
     try {
       // write bytes to output stream
       String extension = getFileExtension(pathToSave);
+
       ImageIO.write(bufferedImage, extension, this.output);
       this.output.close();
 
@@ -71,5 +80,6 @@ public class BufferedImageSaver extends BaseIOMethods implements ImageSaver {
       System.out.println("File error:" + this.pathToSave);
       throw new IllegalArgumentException("Could not save file!");
     }
+
   }
 }
